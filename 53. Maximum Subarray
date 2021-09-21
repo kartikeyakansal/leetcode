@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int ma = 0, currsum = 0;
+        int mama = INT_MIN;
+        int k = 0;
+        for(int i = 0; i < nums.size(); i++){
+            mama = max(mama, nums[i]);
+        }
+        for(k; k < nums.size(); k++){
+            if(nums[k] >= 0){
+                break;
+            }
+        }
+        if(k == nums.size()){
+            return mama;
+        }
+        for(int i = 0; i < nums.size(); i++){
+            if(currsum + nums[i] < 0){
+                currsum = 0;
+            }
+            else{
+                currsum += nums[i];
+                ma = max(ma, currsum);
+            }
+        }
+        return ma;
+    }
+};
